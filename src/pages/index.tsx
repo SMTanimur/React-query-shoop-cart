@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { GrCart } from 'react-icons/gr';
-import LinearProgress from '@material-ui/core/linearProgress';
+import { LinearProgress } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import ItemsCard from '@components/ItemsCard';
 import { ICartItemType } from 'src/type';
