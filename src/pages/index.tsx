@@ -27,42 +27,36 @@ export default function Home() {
   const handleAddToCart = (clickItems: ICartItemType) => {
     setCartItems(prev => {
       //ist Is the item already added in the cart?
-     const isItemInCart = prev.find(item => item.id ===clickItems.id)
-     if (isItemInCart) {
-        return prev.map(item => (
+      const isItemInCart = prev.find(item => item.id === clickItems.id);
+      if (isItemInCart) {
+        return prev.map(item =>
           item.id === clickItems.id
-          ?{...item, amount:item.amount +1}
-          :item
-        ))
-     }
-     //First time item is added,
-     return [...prev,{...clickItems,amount:1}]
-    })
-    
-  }
-
-  const handleRemoveFromCart = (id:number) =>{
-    setCartItems(prev=>(
-      prev.reduce((ack,item) => {
-        if(item.id===id){
-          if(item.amount===1) return ack;
-          return [...ack,{...item, amount:item.amount -1}]
-        }else {
-         return [...ack,item]
-        }
-      },[] as ICartItemType[])
-    ))
-  }
-
-  const handleCartOpen = () => {
-    cartOpen ? setCartOpen(false) : setCartOpen(true);
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        );
+      }
+      //First time item is added,
+      return [...prev, { ...clickItems, amount: 1 }];
+    });
   };
+
+  const handleRemoveFromCart = (id: number) => {
+    setCartItems(prev =>
+      prev.reduce((ack, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) return ack;
+          return [...ack, { ...item, amount: item.amount - 1 }];
+        } else {
+          return [...ack, item];
+        }
+      }, [] as ICartItemType[])
+    );
+  };
+
   // function create
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong...</div>;
-
-  
 
   return (
     <>
